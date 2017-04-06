@@ -1,0 +1,29 @@
+box:
+    id: gmoishi/asciidoc-docker
+    tag: latest
+    cmd: /bin/sh
+
+build:
+    steps:
+        - script:
+            name: make package
+            code: |
+                zip ${WERCKER_OUTPUT_DIR}/readme.zip README.md
+
+deploy:
+    steps:
+        - script:
+            name: get version
+            code: |
+                export VERSION_TAG=`cat version.txt`
+                echo $VERSION_TAG
+        - tcnksm/new-tag:
+            owner: tatsuhiro-gmo
+            repo: test-wercker
+            tag: $VERSION_TAG
+        - tcnksm/ghr:
+            token: $GITHUB_TOKEN
+            input: readme.zip
+            version: $VERSION_TAG
+            replace: false
+
