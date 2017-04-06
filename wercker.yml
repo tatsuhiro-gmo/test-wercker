@@ -9,6 +9,7 @@ build:
             name: make package
             code: |
                 zip ${WERCKER_OUTPUT_DIR}/readme.zip README.md
+                cp version.txt ${WERCKER_OUTPUT_DIR}
 
 deploy:
     steps:
