@@ -18,6 +18,10 @@ deploy:
             code: |
                 export VERSION_TAG=`cat version.txt`
                 echo $VERSION_TAG
+        - script:
+            name: check env
+            code: |
+                env
         - tcnksm/new-tag-test@0.1.0:
             owner: tatsuhiro-gmo
             repo: test-wercker
