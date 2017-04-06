@@ -9,6 +9,7 @@ build:
             name: make package
             code: |
                 zip ${WERCKER_OUTPUT_DIR}/readme.zip README.md
+                zip ${WERCKER_OUTPUT_DIR}/version.zip version.txt
                 cp version.txt ${WERCKER_OUTPUT_DIR}
 
 deploy:
@@ -29,6 +30,11 @@ deploy:
         - tcnksm/ghr:
             token: $GITHUB_TOKEN
             input: readme.zip
+            version: $VERSION_TAG
+            replace: false
+        - tcnksm/ghr:
+            token: $GITHUB_TOKEN
+            input: version.zip
             version: $VERSION_TAG
             replace: false
 
