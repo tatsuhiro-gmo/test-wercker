@@ -23,10 +23,10 @@ deploy:
             name: check env
             code: |
                 env
-        - tcnksm/new-tag-test@0.1.0:
-            owner: tatsuhiro-gmo
-            repo: test-wercker
-            tag: $VERSION_TAG
+                #        - tcnksm/new-tag-test@0.1.0:
+                #            owner: tatsuhiro-gmo
+                #            repo: test-wercker
+                #            tag: $VERSION_TAG
         - tcnksm/ghr:
             token: $GITHUB_TOKEN
             input: readme.zip
